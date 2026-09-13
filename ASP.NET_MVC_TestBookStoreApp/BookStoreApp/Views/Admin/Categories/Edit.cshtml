@@ -1,0 +1,21 @@
+﻿@model BookStoreApp.Models.Domain.Category
+
+@{
+    ViewData["Title"] = "Edit Category"; // Set the page title
+}
+
+<h2>Edit Category</h2>
+
+<!-- Begin form for editing a category -->
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" /> <!-- Hidden field for the category Id -->
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Category Name</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Enter category name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a> <!-- Add a cancel button for improved navigation -->
+</form>

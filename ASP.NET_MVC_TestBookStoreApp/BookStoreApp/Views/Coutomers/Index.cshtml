@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BookStoreApp.Models.Domain.Book>
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-8">Available Books</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @if (Model != null && Model.Any())
+            {
+        @foreach (var book in Model)
+        {
+            <div class="border rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300">
+                <div class="flex justify-center">
+                    <img src="@book.ImageUrl" alt="@book.Title" class="w-48 h-64 object-cover mb-4">
+                </div>
+
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">@book.Title</h2>
+                <p class="text-gray-600">Author: @book.Author.Name</p>
+                <p class="text-gray-600">Category: @book.Category.Name</p>
+                <p class="text-gray-600">Publisher: @book.Publisher.Name</p>
+
+                <div class="mt-4">
+                    <form method="post" asp-action="AddToCart" asp-route-id="@book.Id">
+                        <button type="submit" class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300">
+                            Add to Cart
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+            }
+        else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No books available.</td>
+                </tr>
+            }
+    </div>
+</div>

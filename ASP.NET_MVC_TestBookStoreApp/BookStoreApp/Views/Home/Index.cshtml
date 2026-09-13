@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UseManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (User.IsInRole("Customer"))
+{
+    <h1>Hello Customer</h1>
+    <a class="nav-link" asp-controller="Customers" asp-action="Index">Book List</a>
+}

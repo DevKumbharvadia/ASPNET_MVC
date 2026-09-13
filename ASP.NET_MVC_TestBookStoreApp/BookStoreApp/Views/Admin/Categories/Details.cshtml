@@ -1,0 +1,17 @@
+﻿@model BookStoreApp.Models.Domain.Category
+
+@{
+    ViewData["Title"] = "Category Details"; // Set the page title
+}
+
+<h2>Category Details</h2>
+
+<div class="mb-3">
+    <h4>@Model.Name</h4>
+</div>
+
+<!-- Action links for editing and navigating back -->
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

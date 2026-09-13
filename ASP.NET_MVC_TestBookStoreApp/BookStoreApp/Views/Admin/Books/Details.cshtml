@@ -1,0 +1,53 @@
+﻿@model BookStoreApp.Models.Domain.Book
+
+@{
+    ViewData["Title"] = "Book Details"; // Set the page title
+}
+
+<h2>Book Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h4>@Model.Title</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">Author</dt>
+            <dd class="col-sm-10">@Model.Author?.Name ?? "N/A"</dd>
+
+            <dt class="col-sm-2">Publisher</dt>
+            <dd class="col-sm-10">@Model.Publisher?.Name ?? "N/A"</dd>
+
+            <dt class="col-sm-2">Category</dt>
+            <dd class="col-sm-10">@Model.Category?.Name ?? "N/A"</dd>
+
+            <dt class="col-sm-2">Image</dt>
+            <dd class="col-sm-10">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Title" style="max-width: 200px; max-height: 300px;" />
+                }
+                else
+                {
+                    <span>No image available</span>
+                }
+            </dd>
+
+            @if (Model.BookTags != null && Model.BookTags.Any())
+            {
+                <dt class="col-sm-2">Tags</dt>
+                <dd class="col-sm-10">
+                    @foreach (var bookTag in Model.BookTags)
+                    {
+                        <span class="badge bg-secondary">@bookTag.Tag.Name</span>
+                    }
+                </dd>
+            }
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

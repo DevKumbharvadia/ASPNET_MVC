@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BookStoreApp.Models.Domain.Author>
+
+@{
+    ViewData["Title"] = "Authors"; // Set the page title
+}
+
+<h2>Authors</h2>
+
+<!-- Table for displaying authors -->
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any()) // Check if there are authors to display
+        {
+            foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.Name</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@author.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@author.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@author.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this author?');">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2" class="text-center">No authors found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Create New Author</a>

@@ -1,0 +1,43 @@
+﻿@model List<WebApplication1.Models.Domain.Tag>
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Tag List (Admin User)</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Display Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tag in Model)
+                {
+                    <tr>
+                        <td>@tag.Id</td>
+                        <td>@tag.Name</td>
+                        <td>@tag.DisplayName</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@tag.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form asp-action="DeleteConfirmed" asp-route-id="@tag.Id" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this tag?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Tags empty!</p>
+    }
+</div>

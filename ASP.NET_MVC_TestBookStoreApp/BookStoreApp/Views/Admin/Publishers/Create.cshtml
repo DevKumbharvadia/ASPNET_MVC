@@ -1,0 +1,19 @@
+﻿@model BookStoreApp.Models.Domain.Publisher
+
+@{
+    ViewData["Title"] = "Create Publisher"; // Set the page title
+}
+
+<h2>Create Publisher</h2>
+
+<!-- Form for creating a new publisher -->
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Publisher Name</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Enter publisher name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

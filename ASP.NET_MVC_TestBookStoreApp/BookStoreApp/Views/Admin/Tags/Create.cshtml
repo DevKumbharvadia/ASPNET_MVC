@@ -1,0 +1,19 @@
+﻿@model BookStoreApp.Models.Domain.Tag
+
+
+@{
+    ViewData["Title"] = "Create Tag"; // Set the page title
+}
+
+<h2>Create Tag</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Tag Name</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Enter tag name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

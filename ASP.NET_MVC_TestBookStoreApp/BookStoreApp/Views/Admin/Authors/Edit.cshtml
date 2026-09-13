@@ -1,0 +1,22 @@
+﻿@model BookStoreApp.Models.Domain.Author
+
+@{
+    ViewData["Title"] = "Edit Author"; // Set the page title
+}
+
+<h2>Edit Author</h2>
+
+<!-- Begin form for editing the author's details -->
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Author Name</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Enter author name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary mt-2">Back to List</a>
